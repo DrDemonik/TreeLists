@@ -131,10 +131,4 @@ namespace MyWpfApp1
         
     }
 
-    //class Node
-    //{
-    //    public Visual node = new Visual();
-
-    //    public ObservableCollection<Visual> Nodes = new ObservableCollection<Visual>();
-    //}
 }

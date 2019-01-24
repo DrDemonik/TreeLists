@@ -4,29 +4,31 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MyWpfApp1"
-        xmlns:dxg="http://schemas.devexpress.com/winfx/2008/xaml/grid" x:Class="MyWpfApp1.MainWindow"
+        xmlns:dxg="http://schemas.devexpress.com/winfx/2008/xaml/grid" xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors" x:Class="MyWpfApp1.MainWindow"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="600.392" Width="1057.311">
     <Window.DataContext>
         <local:ViemModel/>
     </Window.DataContext>
-    <Grid Background="#FFDA9F00" RenderTransformOrigin="0.493,0.533" HorizontalAlignment="Left" Width="792">
+    <Grid Background="#FFDA9F00" RenderTransformOrigin="0.495,0.45" Height="573" VerticalAlignment="Bottom">
         <Grid.Resources>
             <local:HierarchyConverter x:Key="HierarchyConverter"/>
+
             <HierarchicalDataTemplate x:Key="Test1" ItemsSource="{Binding Converter={StaticResource HierarchyConverter}}">
                 <StackPanel Orientation="Horizontal" >
                     <TextBlock Text="{Binding name}" />
+                    <TextBlock Text="   " />
                     <TextBlock Text="{Binding start_date}" />
                 </StackPanel>
             </HierarchicalDataTemplate>
 
-
-            <TreeViewItem x:Key="Test2" Header="Виды работ" >
+            <!--<TreeViewItem x:Key="Test2" Header="Виды работ" >
                 <HierarchicalDataTemplate ItemsSource="{Binding Converter={StaticResource HierarchyConverter}}">
                     <TextBlock Text="{Binding name}" />
                 </HierarchicalDataTemplate>
             </TreeViewItem>
-
+            
+            
 
             <ListView x:Key="test1">
                 <ListView.View>
@@ -36,26 +38,43 @@
                         <GridViewColumn DisplayMemberBinding="{Binding end_date}" Header="Конец"/>
                     </GridView>
                 </ListView.View>
-            </ListView>
+            </ListView>-->
         </Grid.Resources>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="286*"/>
+            <RowDefinition Height="287*"/>
+        </Grid.RowDefinitions>
 
-        <!--<TreeView x:Name="TreeViewComponent1"
-                  Margin="10,10,430,10"
-                  Background="#FFF0CCCC"
-                  ItemsSource="{Binding Converter={StaticResource HierarchyConverter}}"
+        <TreeView x:Name="TreeViewComponent1"
+                  Margin="10"
+                  Background="#FFF0CCCC"                  
                   ItemTemplate="{StaticResource Test1}" 
-                  />-->
-        <dxg:TreeListControl AutoGenerateColumns="AddNew" 
-                             x:Name="DevTreeList"
+                  />
+
+        <!--<dxg:TreeListControl AutoGenerateColumns="AddNew" 
+                             x:Name="DevTreeListComponent"
                              EnableSmartColumnsGeneration="True" 
-                             HorizontalAlignment="Left" 
-                             Margin="367,22,0,0" 
-                             VerticalAlignment="Top" 
-                             Height="391" Width="415" ItemsSource="{Binding ViewSourceVisual}"                             
+                             Margin="10" ItemsSource="{Binding ViewSourceVisual}" Grid.Row="1"                             
+                             >            
+            <dxg:TreeListControl.View>
+                <dxg:TreeListView AllowPerPixelScrolling="True" ShowTotalSummary="True"  KeyFieldName="id" ParentFieldName="parent_id">                    
+                </dxg:TreeListView>                
+            </dxg:TreeListControl.View>
+        </dxg:TreeListControl>-->
+
+        <dxg:TreeListControl 
+                             x:Name="DevTreeListComponent"                             
+                             Margin="10" ItemsSource="{Binding ViewSourceVisual}" Grid.Row="1"                             
                              >
             <dxg:TreeListControl.View>
                 <dxg:TreeListView AllowPerPixelScrolling="True" ShowTotalSummary="True"  KeyFieldName="id" ParentFieldName="parent_id"/>
             </dxg:TreeListControl.View>
+            <dxg:TreeListColumn FieldName="name"  Header="Наименование" AllowEditing="True" ReadOnly="True">
+                <dxg:TreeListColumn.EditSettings>
+                    <dxe:TextEditSettings/>
+                </dxg:TreeListColumn.EditSettings>
+            </dxg:TreeListColumn>
+            <dxg:TreeListColumn FieldName="start_date" Header="Стартовая дата" ReadOnly="True"/>
         </dxg:TreeListControl>
     </Grid>
 </Window>

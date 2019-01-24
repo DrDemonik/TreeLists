@@ -31,7 +31,6 @@ namespace MyWpfApp1
         public ViemModel()
         {
             _viewSourceVisual = model.visual;
-            //Nodes= model.visual;
         }
     }
 
