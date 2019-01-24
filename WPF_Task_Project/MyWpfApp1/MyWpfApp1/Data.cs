@@ -93,6 +93,7 @@ namespace MyWpfApp1
                                 }
                             }
                             _visual.Visuals = visual;
+                            _visual.Graphs = graph.Where(x => x.id_technology_card == _visual.id_technology_card).ToList();
                             visual.Add(_visual);
                             
                         }
@@ -125,6 +126,9 @@ namespace MyWpfApp1
         public DateTime end_date { get; set; } //дата окончания (максимальная дата окончания его детей, если это не уровень 5)
 
         public  virtual ObservableCollection<Visual> Visuals { get; set; }
+        public virtual List<Graph> Graphs { get; set; }
+
+        
     }
 
     //class Node

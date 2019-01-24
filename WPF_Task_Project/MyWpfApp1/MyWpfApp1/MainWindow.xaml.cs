@@ -28,8 +28,9 @@ namespace MyWpfApp1
             //TV1.DataContext = work;
             //ViemModel vm = new ViemModel();
             //TV1.ItemsSource = vm.Nodes.Where(x => x.parent_id == null); 
-            ViemModel treeContext = new ViemModel();
-            TV1.ItemsSource = treeContext.ViewSourceVisual.Where(x => x.parent_id == null).ToList();
+            //ViemModel treeContext = new ViemModel();
+            //TreeViewComponent1.ItemsSource = treeContext.ViewSourceVisual.Where(x => x.parent_id == null).ToList();
+            //DevTreeList.ItemsSource = treeContext.ViewSourceVisual.Where(x => x.parent_id == null).ToList();
         }
     }
 

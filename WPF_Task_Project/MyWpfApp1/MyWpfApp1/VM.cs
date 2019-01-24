@@ -13,7 +13,7 @@ namespace MyWpfApp1
 { 
     class ViemModel
     {
-        public Model model= new Model();
+        private Model model= new Model();
 
         private ObservableCollection<Visual> _viewSourceVisual;
         public ObservableCollection<Visual> ViewSourceVisual
