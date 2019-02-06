@@ -13,10 +13,19 @@ using System.Windows.Data;
 
 namespace MyWpfApp1
 {
+    /// <summary>
+    /// Модель данных
+    /// </summary>
     public class Model 
     {
-        public ObservableCollection<Graph> graph; //график работ
-        public ObservableCollection<Visual> visual; //5 уровней визуализации
+        /// <summary>
+        /// График работ
+        /// </summary>
+        public ObservableCollection<Graph> graph;
+        /// <summary>
+        /// 5 уровней визуализации
+        /// </summary>
+        public ObservableCollection<Visual> visual;
 
         public Model()
         {            
@@ -24,7 +33,9 @@ namespace MyWpfApp1
             visual = new ObservableCollection<Visual>();            
             LoadData();
         }
-
+        /// <summary>
+        /// Загрузка статичных XML данных
+        /// </summary>
         public void LoadData()
         {
             try
@@ -93,7 +104,29 @@ namespace MyWpfApp1
                                 }
                             }
                             _visual.Visuals = visual;
-                            _visual.Graphs = graph.Where(x => x.id_technology_card == _visual.id_technology_card).ToList();
+                            _visual.vvvvvvvvvv = _visual;
+                            //_visual.Graphs = graph.Where(x => x.id_technology_card == _visual.id_technology_card).ToArray();
+                            _visual.Graphs = new ObservableCollection<Graph>(graph.Where(x => x.id_technology_card == _visual.id_technology_card));
+
+                            Period temp = new Period();
+                            temp.mount = "Январь";
+                            Graph tempgraph = _visual.Graphs.FirstOrDefault(x => x.start_date.Month ==1);
+                            if (tempgraph != null)
+                            {
+                                temp.isGraphs = true;
+                                if (_visual.p == null)
+                                {
+                                    _visual.p = new List<Period>();
+                                    _visual.p.Add(temp);
+                                }
+                                else
+                                {
+                                    _visual.p.Add(temp);
+                                }
+                            }
+                            
+
+
                             visual.Add(_visual);
                             
                         }
@@ -125,10 +158,18 @@ namespace MyWpfApp1
         public DateTime start_date { get; set; } //дата начала (минимальная дата начала его детей, если это не уровень 5)
         public DateTime end_date { get; set; } //дата окончания (максимальная дата окончания его детей, если это не уровень 5)
 
-        public  virtual ObservableCollection<Visual> Visuals { get; set; }
-        public virtual List<Graph> Graphs { get; set; }
+        public virtual ObservableCollection<Visual> Visuals { get; set; }
+        public virtual ObservableCollection<Graph> Graphs { get; set; }
 
-        
+        public Visual vvvvvvvvvv { get; set; }
+
+        public List<Period> p { get ; set; }        
+    }
+
+    public class Period
+    {
+        public string mount { get; set; }
+        public bool isGraphs { get; set; }
     }
 
 }

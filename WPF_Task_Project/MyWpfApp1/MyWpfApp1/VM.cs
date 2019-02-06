@@ -11,6 +11,9 @@ using System.Globalization;
 
 namespace MyWpfApp1
 { 
+    /// <summary>
+    /// Модель для отображение, используется MVVM-патерн
+    /// </summary>
     class ViemModel
     {
         private Model model= new Model();
@@ -34,6 +37,9 @@ namespace MyWpfApp1
         }
     }
 
+    /// <summary>
+    /// Конвектер входящих данных, для верхего отображения
+    /// </summary>
     class HierarchyConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)

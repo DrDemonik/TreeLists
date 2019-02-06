@@ -64,17 +64,18 @@
 
         <dxg:TreeListControl 
                              x:Name="DevTreeListComponent"                             
-                             Margin="10" ItemsSource="{Binding ViewSourceVisual}" Grid.Row="1"                             
+                             Margin="10" Grid.Row="1" ItemsSource="{Binding ViewSourceVisual}"                              
                              >
             <dxg:TreeListControl.View>
-                <dxg:TreeListView AllowPerPixelScrolling="True" ShowTotalSummary="True"  KeyFieldName="id" ParentFieldName="parent_id"/>
+                <dxg:TreeListView AllowPerPixelScrolling="True"  KeyFieldName="id" ParentFieldName="parent_id">
+
+                </dxg:TreeListView>
             </dxg:TreeListControl.View>
-            <dxg:TreeListColumn FieldName="name"  Header="Наименование" AllowEditing="True" ReadOnly="True">
-                <dxg:TreeListColumn.EditSettings>
-                    <dxe:TextEditSettings/>
-                </dxg:TreeListColumn.EditSettings>
+            <dxg:TreeListColumn FieldName="name"  Header="Наименование" AllowEditing="True" ReadOnly="True"/>
+            <dxg:TreeListColumn FieldName="start_date" Header="Начало" ReadOnly="True">
             </dxg:TreeListColumn>
-            <dxg:TreeListColumn FieldName="start_date" Header="Стартовая дата" ReadOnly="True"/>
+            <dxg:TreeListColumn FieldName="end_date" Header="Конец" ReadOnly="True"/>
+            
         </dxg:TreeListControl>
     </Grid>
 </Window>
